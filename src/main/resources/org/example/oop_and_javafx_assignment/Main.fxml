@@ -1,0 +1,220 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<!-- NOTE: I cant use a css file because I dont have intelij ultimate edition -->
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.oop_and_javafx_assignment.MainController"
+            prefWidth="820" prefHeight="540"
+            style="-fx-background-color: #9B6914;">
+
+
+    <!-- Menu Bar -->
+
+    <top>
+        <MenuBar fx:id="menuBar"
+                 style="-fx-background-color: #7A4E10;">
+            <menus>
+
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="New"   onAction="#handleNew"/>
+                        <MenuItem text="Open…" onAction="#handleOpen"/>
+                        <MenuItem text="Save"  onAction="#handleSave"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Exit"  onAction="#handleExit"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Edit">
+                    <items>
+                        <MenuItem text="Cut"   onAction="#handleCut"/>
+                        <MenuItem text="Copy"  onAction="#handleCopy"/>
+                        <MenuItem text="Paste" onAction="#handlePaste"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Theme">
+                    <items>
+                        <MenuItem text="Default" onAction="#handleDefaultTheme"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="About" onAction="#handleAbout"/>
+                    </items>
+                </Menu>
+
+            </menus>
+        </MenuBar>
+    </top>
+
+
+    <!-- CENTER: profile image + table -->
+
+    <center>
+        <HBox style="-fx-background-color: #9B6914;">
+
+            <!-- Profile image panel -->
+            <VBox alignment="TOP_CENTER"
+                  minWidth="115" maxWidth="115"
+                  style="-fx-background-color: #9B6914;">
+                <padding><Insets top="12" right="10" bottom="10" left="10"/></padding>
+
+                <StackPane minWidth="90" minHeight="90"
+                           maxWidth="90" maxHeight="90"
+                           style="-fx-background-color: #C8A878;
+                                  -fx-border-color: #7A4E10;
+                                  -fx-border-width: 2;
+                                  -fx-border-radius: 4;
+                                  -fx-background-radius: 4;">
+                    <!-- Loaded image -->
+                    <ImageView fx:id="profileImageView"
+                               fitWidth="86" fitHeight="86"
+                               preserveRatio="true"/>
+                    <!-- Fallback person glyph -->
+                    <Label fx:id="profilePlaceholder"
+                           text="&#x1F464;"
+                           style="-fx-font-size: 46px; -fx-text-fill: #5A3A08;"/>
+                </StackPane>
+            </VBox>
+
+            <!-- TableView -->
+            <TableView fx:id="studentTable"
+                       HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #7A4E10;
+                              -fx-border-width: 0 0 0 1;
+                              -fx-table-cell-border-color: #DDCCAA;">
+                <columns>
+                    <TableColumn fx:id="colId"         text="ID"         prefWidth="42"/>
+                    <TableColumn fx:id="colFirstName"  text="First Name" prefWidth="105"/>
+                    <TableColumn fx:id="colLastName"   text="Last Name"  prefWidth="105"/>
+                    <TableColumn fx:id="colDepartment" text="Department" prefWidth="118"/>
+                    <TableColumn fx:id="colMajor"      text="Major"      prefWidth="100"/>
+                    <TableColumn fx:id="colEmail"      text="Email"      prefWidth="152"/>
+                </columns>
+            </TableView>
+
+        </HBox>
+    </center>
+
+    <!-- RIGHT: lime-green form + action buttons -->
+    <right>
+        <VBox spacing="7" minWidth="195" maxWidth="195"
+              style="-fx-background-color: #66DD00;
+                     -fx-border-color: #44AA00;
+                     -fx-border-width: 0 0 0 2;">
+            <padding><Insets top="8" right="10" bottom="10" left="10"/></padding>
+
+            <TextField fx:id="tfFirstName"  promptText="First Name"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <TextField fx:id="tfLastName"   promptText="Last Name"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <TextField fx:id="tfDepartment" promptText="Department"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <TextField fx:id="tfMajor"      promptText="Major"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <TextField fx:id="tfEmail"      promptText="Email"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <TextField fx:id="tfImageURL"   promptText="imageURL"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #88CC00;
+                              -fx-border-width: 2;
+                              -fx-border-radius: 3;
+                              -fx-background-radius: 3;
+                              -fx-font-size: 12;"/>
+
+            <!-- Spacer -->
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button fx:id="btnClear"  text="Clear"  onAction="#handleClear"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #B8762A;
+                           -fx-text-fill: #1A0800;
+                           -fx-font-size: 13;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 20;
+                           -fx-border-radius: 20;
+                           -fx-border-color: #8A5010;
+                           -fx-border-width: 1;
+                           -fx-padding: 7 0 7 0;
+                           -fx-cursor: hand;"/>
+
+            <Button fx:id="btnAdd"    text="Add"    onAction="#handleAdd"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #B8762A;
+                           -fx-text-fill: #1A0800;
+                           -fx-font-size: 13;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 20;
+                           -fx-border-radius: 20;
+                           -fx-border-color: #8A5010;
+                           -fx-border-width: 1;
+                           -fx-padding: 7 0 7 0;
+                           -fx-cursor: hand;"/>
+
+            <Button fx:id="btnDelete" text="Delete" onAction="#handleDelete"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #B8762A;
+                           -fx-text-fill: #1A0800;
+                           -fx-font-size: 13;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 20;
+                           -fx-border-radius: 20;
+                           -fx-border-color: #8A5010;
+                           -fx-border-width: 1;
+                           -fx-padding: 7 0 7 0;
+                           -fx-cursor: hand;"/>
+
+            <Button fx:id="btnEdit"   text="Edit"   onAction="#handleEdit"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #B8762A;
+                           -fx-text-fill: #1A0800;
+                           -fx-font-size: 13;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 20;
+                           -fx-border-radius: 20;
+                           -fx-border-color: #8A5010;
+                           -fx-border-width: 1;
+                           -fx-padding: 7 0 7 0;
+                           -fx-cursor: hand;"/>
+
+        </VBox>
+    </right>
+
+</BorderPane>
